@@ -1,0 +1,11 @@
+/* Companion integration: preserve the original company design. */
+.skip-link{position:absolute;left:1rem;top:-8rem;background:white;color:#16313a;padding:.75rem 1rem;z-index:10}
+.skip-link:focus{top:1rem}
+a:focus-visible{outline:3px solid #a33e28;outline-offset:5px}
+#top:focus{outline:none}
+.flow-caption{max-width:58rem;margin:1.5rem 0 0;font-size:1rem;line-height:1.65;color:#465e64}
+.hub-entry{margin-top:1rem;align-self:flex-start;background:#a33e28;font-size:.95rem}
+.hub-entry:hover{background:#16313a}
+.first-task small{font-size:.95rem;line-height:1.6}
+.site-header nav{gap:clamp(12px,2vw,30px)}
+@media(max-width:600px){.site-header{height:auto;min-height:90px;padding-top:1rem;padding-bottom:1rem;gap:1rem;flex-wrap:wrap}.site-header .nav-feature{font-size:.875rem}.brand strong{font-size:1rem}}
