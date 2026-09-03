@@ -45,6 +45,10 @@ L02's practice brief and L05's organisation brief / three observations reproduce
 
 The homepage distinguishes existing digital services from incomplete integration, manual processes and the board's improvement goal. Its information-flow diagram is conceptual, not a verified architecture.
 
+### Weekly attendance recognition
+
+The homepage includes an Employee of the Week banner celebrating 100% attendance. To update it, replace the single student first name inside the `.award-name` element in `index.html`, then update the first name in the section's accessible `aria-label`. Do not add a surname, photograph, class, email address or other identifying information to the public site.
+
 ### Extending the site
 
 Use the existing `consultant/hub.css` and lesson-page structure. Match new pages to approved workbook tasks and completed decks. Add only available lesson links to both the hub and lesson navigation. Check relative links, section anchors, mobile CSS and keyboard access before publishing. Do not publish the teacher PPTX files as student resources without preparing an appropriate student-facing version.
