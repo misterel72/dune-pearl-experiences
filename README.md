@@ -24,8 +24,8 @@ Student entry: https://dune-pearl-experiences.netlify.app/consultant/index.html
 
 | Classroom topic | Lessons | Workbook edition 1.1 |
 | --- | --- | --- |
-| U1-00 Induction and client brief | L01 Meet the client; L02 Decode a client brief; L03 Explain your reasoning | Activity sheets pp105–107; supporting pp4–7 |
-| U1-01 Start with the organisation | L04 Understand the work; L05 Apply the client evidence; L06 Ask, then explain; L07 Transfer and improve | Topic 01, pp8–10 |
+| U1-00 Induction and client brief | L01 Meet the client; L02 Decode a client brief; L03 Explain your reasoning | L01–L03, each with its own teaching and response section |
+| U1-01 Start with the organisation | L04 Understand the work; L05 Apply the client evidence; L06 Ask, then explain; L07 Transfer and improve | L04–L07; L04-N, T01-KC, A1–A3, ER, TR and REVIEW |
 
 Each lesson has a stable page, for example `consultant/l01.html`, suitable for linking directly from Classroom. Each contains the brief, evidence, task codes, completion checks and a reminder to work in the student's own workbook. All essential content works without JavaScript. Expandable support is native HTML.
 
@@ -39,7 +39,7 @@ Each lesson has a stable page, for example `consultant/l01.html`, suitable for l
 
 ### Source and consistency
 
-Aligned with `BTEC_L3_U1_Student_Workbook_Dune_Pearl_v1.1.docx` and the seven standalone teacher decks L01–L07. Lesson and task codes are primary references; page numbers can change in student copies.
+Aligned with `BTEC_L3_U1_Student_Workbook_Dune_Pearl_v2.0.docx` and the seven standalone teacher decks L01–L07. All student directions use lesson headings and task codes. Do not reintroduce page numbers: they change as response boxes expand in personal copies.
 
 L02's practice brief and L05's organisation brief / three observations reproduce their workbook source wording. L07 retains the unfamiliar charity scenario, rather than converting every activity into Dune & Pearl. Do not invent missing budgets, queue timings or offline procedures, or import later scenario figures into these early lessons. Role-play answers must be labelled simulated, not reported company facts.
 
@@ -52,3 +52,11 @@ The homepage includes an Employee of the Week banner celebrating 100% attendance
 ### Extending the site
 
 Use the existing `consultant/hub.css` and lesson-page structure. Match new pages to approved workbook tasks and completed decks. Add only available lesson links to both the hub and lesson navigation. Check relative links, section anchors, mobile CSS and keyboard access before publishing. Do not publish the teacher PPTX files as student resources without preparing an appropriate student-facing version.
+
+## Workbook navigation, lesson edition 2.0
+
+The workbook contains the full L01–L120 teaching/practice route, with real lesson headings, internal links, response boxes and completion checks. Published companion lessons currently cover L01–L07 only. Match the website, workbook and slides by lesson code; add later pages when their materials are ready.
+
+The public website never links to an editable master or a student's personal workbook. Students open their own copy from the ongoing Classroom assignment, then use its lesson index or document outline. Classroom course links remain the class list until a verified course URL is supplied.
+
+On small screens the lesson menu follows the current lesson, so students reach the lesson and its four step links first. Existing work in older student copies stays intact. A revised master does not automatically replace Classroom attachments or update personal copies. Agree a changeover point; retain completed work and feedback rather than asking students to repeat tasks. Teacher decks remain private teacher resources.
