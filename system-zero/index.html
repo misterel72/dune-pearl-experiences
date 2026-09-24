@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dune & Pearl System Zero, a cooperative BTEC Level 3 IT escape-room challenge based on lessons L01 to L07.">
+  <meta name="theme-color" content="#0b171c">
+  <title>System Zero | Dune &amp; Pearl Experiences</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#game">Skip to game</a>
+
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Dune and Pearl Experiences home">
+      <span class="brand-mark" aria-hidden="true">☀</span>
+      <span><strong>Dune &amp; Pearl</strong><small>INCIDENT RESPONSE · SYSTEM ZERO</small></span>
+    </a>
+    <div class="topbar-actions">
+      <button class="ghost-button" id="soundToggle" type="button" aria-pressed="false">Sound: off</button>
+      <button class="ghost-button danger" id="resetButton" type="button">Reset mission</button>
+    </div>
+  </header>
+
+  <main id="game" tabindex="-1">
+    <section id="introScreen" class="screen intro-screen">
+      <div class="intro-copy">
+        <p class="eyebrow">BTEC Level 3 IT · Unit 1 · L01-L07</p>
+        <p class="incident-code">INCIDENT DP-001</p>
+        <h1>SYSTEM <span>ZERO</span></h1>
+        <p class="lede">Three Dune &amp; Pearl locations are isolated. Guest operations are failing. The recovery console will only accept decisions supported by evidence.</p>
+
+        <div class="incident-alert" role="status">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <div><strong>CRITICAL SERVICE FAILURE</strong><small>Systems integrity 17% · Recovery protocol locked</small></div>
+        </div>
+
+        <div class="mission-rule">
+          <strong>RULE 01</strong>
+          <p>Do not jump to a solution. Investigate the organisation, identify the requirement, use the evidence and justify the decision.</p>
+        </div>
+      </div>
+
+      <div class="role-panel" aria-labelledby="roleHeading">
+        <p class="terminal-label">ASSIGN CONSULTANT LOCATION</p>
+        <h2 id="roleHeading">Where are you trapped?</h2>
+        <p class="role-help">For the full cooperative mission, each team member should choose a different location.</p>
+
+        <div class="role-grid">
+          <button class="role-card" type="button" data-role="ops">
+            <span class="role-icon">HQ</span>
+            <span><strong>Doha Operations Centre</strong><small>Leadership · Finance · HR · Central IT</small></span>
+            <b>CONSULTANT ALPHA</b>
+          </button>
+          <button class="role-card" type="button" data-role="marina">
+            <span class="role-icon">⚓</span>
+            <span><strong>Pearl Marina Hub</strong><small>Tours · Hire · Outdoor guest check-in</small></span>
+            <b>CONSULTANT BRAVO</b>
+          </button>
+          <button class="role-card" type="button" data-role="desert">
+            <span class="role-icon">☀</span>
+            <span><strong>Dune Desert Camp</strong><small>Tours · Dining · Overnight stays · Events</small></span>
+            <b>CONSULTANT CHARLIE</b>
+          </button>
+        </div>
+
+        <label class="name-field" for="playerName">Consultant name <span>(optional)</span></label>
+        <input id="playerName" type="text" maxlength="28" autocomplete="off" placeholder="Enter your name">
+
+        <div class="intro-actions">
+          <button id="startButton" class="primary-button" type="button" disabled>BEGIN INCIDENT RESPONSE <span>→</span></button>
+          <button id="resumeButton" class="secondary-button hidden" type="button">RESUME SAVED MISSION</button>
+        </div>
+        <p class="smallprint">Your progress saves automatically on this device. No student data is sent anywhere.</p>
+      </div>
+    </section>
+
+    <section id="missionScreen" class="screen mission-screen hidden" aria-live="polite">
+      <div class="hud" aria-label="Mission status">
+        <div class="hud-location">
+          <span id="roleBadge">ALPHA</span>
+          <div><small>LOCATION</small><strong id="locationName">Doha Operations Centre</strong></div>
+        </div>
+        <div class="hud-stat timer-stat">
+          <small>INCIDENT CLOCK</small>
+          <strong id="timer">45:00</strong>
+        </div>
+        <div class="hud-stat">
+          <small>SYSTEM INTEGRITY</small>
+          <strong><span id="integrityValue">17</span>%</strong>
+          <div class="mini-meter"><i id="integrityBar"></i></div>
+        </div>
+        <div class="hud-stat">
+          <small>CREDIBILITY</small>
+          <strong><span id="credibilityValue">100</span></strong>
+          <div class="mini-meter credibility"><i id="credibilityBar"></i></div>
+        </div>
+        <div class="hud-stat">
+          <small>ASSUMPTION METER</small>
+          <strong><span id="assumptionValue">0</span>%</strong>
+          <div class="mini-meter warning"><i id="assumptionBar"></i></div>
+        </div>
+      </div>
+
+      <div class="mission-layout">
+        <aside class="lock-rail" aria-label="Recovery locks">
+          <p class="terminal-label">RECOVERY LOCKS</p>
+          <ol id="lockList"></ol>
+          <div class="team-code-panel">
+            <small>TEAM RECOVERY CODE</small>
+            <div id="teamCode">? · ? · ?</div>
+            <p>Some digits belong to another location. Talk to your team.</p>
+          </div>
+        </aside>
+
+        <section class="challenge-console" id="challengeConsole">
+          <div class="console-head">
+            <div>
+              <p id="lessonLabel" class="eyebrow">LOCK 01 · L01</p>
+              <h2 id="challengeTitle">Know your client</h2>
+            </div>
+            <div class="difficulty"><span>RECOVERY PHASE</span><strong id="phaseNumber">01 / 07</strong></div>
+          </div>
+
+          <div id="narrative" class="narrative"></div>
+          <div id="challengeBody" class="challenge-body"></div>
+          <div id="feedback" class="feedback hidden" role="status"></div>
+
+          <div class="console-actions">
+            <button id="hintButton" class="secondary-button" type="button">REQUEST HINT <span class="cost">−5 credibility</span></button>
+            <button id="submitButton" class="primary-button" type="button">SUBMIT DECISION <span>→</span></button>
+            <button id="nextButton" class="primary-button hidden" type="button">UNLOCK NEXT PHASE <span>→</span></button>
+          </div>
+        </section>
+
+        <aside class="comms-panel" aria-label="Incident communications">
+          <div class="comms-head"><span class="pulse-dot"></span><strong>LIVE COMMS</strong></div>
+          <div id="commsFeed" class="comms-feed"></div>
+          <div class="evidence-drawer">
+            <button id="evidenceButton" type="button" aria-expanded="false">EVIDENCE PACKET <span>+</span></button>
+            <div id="evidencePanel" class="evidence-panel hidden"></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="completeScreen" class="screen complete-screen hidden">
+      <div class="complete-card">
+        <div class="complete-ring"><span>100%</span><small>RESTORED</small></div>
+        <p class="eyebrow">INCIDENT DP-001 CLOSED</p>
+        <h1>SYSTEMS RESTORED</h1>
+        <p id="completeMessage">You restored Dune &amp; Pearl by understanding the organisation before choosing the technology.</p>
+        <div class="restored-grid">
+          <div><span>🏢</span><strong>Doha Operations</strong><small>CONNECTED</small></div>
+          <div><span>⚓</span><strong>Pearl Marina</strong><small>OPERATIONAL</small></div>
+          <div><span>☀</span><strong>Dune Desert Camp</strong><small>OPERATIONAL</small></div>
+        </div>
+        <div id="badgeList" class="badge-list"></div>
+        <div class="score-card">
+          <div><small>FINAL CREDIBILITY</small><strong id="finalCredibility">100</strong></div>
+          <div><small>ASSUMPTION LEVEL</small><strong id="finalAssumption">0%</strong></div>
+          <div><small>TIME REMAINING</small><strong id="finalTime">00:00</strong></div>
+        </div>
+        <div class="complete-actions">
+          <a class="secondary-button link-button" href="../consultant/index.html">RETURN TO CONSULTANT HUB</a>
+          <button id="playAgainButton" class="primary-button" type="button">RUN INCIDENT AGAIN</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="game-footer">
+    <p>Fictional BTEC Level 3 IT teaching and practice. Not a live Pearson Set Assignment.</p>
+    <p>Dune &amp; Pearl Experiences · System Zero</p>
+  </footer>
+
+  <script src="game.js"></script>
+</body>
+</html>
