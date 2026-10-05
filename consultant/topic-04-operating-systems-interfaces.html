@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#08171d">
+<title>Topic 04 | Operating Systems & Interfaces | Dune & Pearl</title>
+<meta name="description" content="BTEC Level 3 IT Unit 1 Topic 04 interactive learning experience: operating systems and interfaces.">
+<style>
+:root{--bg:#08171d;--panel:#102a33;--panel2:#0d222a;--line:rgba(185,221,216,.18);--text:#f8fbf8;--muted:#b4c7c5;--teal:#3fc1bd;--coral:#f07a58;--sand:#f1d39d;--green:#70d59a;--blue:#8bbcf4}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:Lexend,"Segoe UI",Arial,sans-serif}body{background-image:radial-gradient(circle at 12% 6%,rgba(63,193,189,.12),transparent 28%),radial-gradient(circle at 88% 13%,rgba(240,122,88,.10),transparent 25%)}button,a{font:inherit}.app{min-height:100vh;display:grid;grid-template-rows:66px 1fr 66px}.top{display:flex;align-items:center;justify-content:space-between;padding:0 22px;border-bottom:1px solid var(--line);background:rgba(4,14,18,.93);backdrop-filter:blur(12px);z-index:5}.brand b{display:block}.brand span,.small{font-size:11px;color:var(--muted);letter-spacing:1.4px;text-transform:uppercase}.status{padding:9px 12px;border:1px solid rgba(240,122,88,.3);border-radius:999px;color:#ffc2b2;font-size:12px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--coral);margin-right:7px}
+main{position:relative;overflow:hidden}.screen{display:none;min-height:calc(100vh - 132px);padding:24px 26px 30px}.screen.active{display:flex}.shell{width:min(1160px,100%);margin:auto}.eyebrow{color:var(--teal);font-size:12px;text-transform:uppercase;letter-spacing:2.1px;font-weight:850}.lesson-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(63,193,189,.1);border:1px solid rgba(63,193,189,.25);color:#95ece8;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}h1{font-size:clamp(42px,7vw,78px);line-height:.96;margin:12px 0 18px;letter-spacing:-2px}h2{font-size:clamp(31px,4vw,52px);margin:8px 0 14px;line-height:1}h3{margin:0 0 10px}.lede{font-size:clamp(18px,2vw,23px);line-height:1.45;color:#dbe8e6;max-width:920px}.grid2{display:grid;grid-template-columns:1.08fr .92fr;gap:20px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.panel{padding:21px;border:1px solid var(--line);border-radius:19px;background:linear-gradient(180deg,rgba(18,45,54,.96),rgba(9,29,36,.95))}.panel.warn{border-color:rgba(240,122,88,.34);background:rgba(240,122,88,.07)}.callout{padding:15px 17px;border-left:4px solid var(--teal);background:rgba(63,193,189,.07);border-radius:0 13px 13px 0}.callout.warn{border-color:var(--coral);background:rgba(240,122,88,.08)}.evidence{padding:14px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.03);margin:9px 0}.tag{display:inline-block;padding:5px 8px;border-radius:999px;background:rgba(63,193,189,.1);color:var(--teal);font-size:11px;font-weight:850;text-transform:uppercase}.choice{width:100%;text-align:left;padding:13px;margin:7px 0;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:white;cursor:pointer}.choice:hover,.choice.selected{border-color:var(--teal);background:rgba(63,193,189,.11)}.reveal{display:none;margin-top:14px;padding:15px;border:1px solid rgba(112,213,154,.28);background:rgba(112,213,154,.08);border-radius:14px}.reveal.show{display:block}.reveal b{color:#98edb8}.btn{border:0;border-radius:13px;padding:12px 17px;background:#0f8c89;color:white;font-weight:850;cursor:pointer}.btn.coral{background:var(--coral)}.btn.ghost{background:rgba(255,255,255,.05);border:1px solid var(--line)}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.workbook{padding:20px;border:1px solid rgba(241,211,157,.3);border-radius:18px;background:rgba(241,211,157,.06)}.workbook b{color:var(--sand)}.gemini{padding:20px;border:1px solid rgba(139,188,244,.3);border-radius:18px;background:rgba(139,188,244,.06)}.gemini b{color:var(--blue)}.resource-strip{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 18px}.mode{display:inline-flex;align-items:center;gap:9px;padding:9px 12px;border-radius:999px;font-size:11px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;border:1px solid var(--line);background:rgba(255,255,255,.035)}.mode:before{content:"";width:9px;height:9px;border-radius:50%;background:currentColor}.mode.discuss{color:var(--teal)}.mode.book{color:var(--sand);border-color:rgba(241,211,157,.3);background:rgba(241,211,157,.07)}.mode.gemini{color:var(--blue);border-color:rgba(139,188,244,.3);background:rgba(139,188,244,.07)}.mode.investigate{color:var(--coral);border-color:rgba(240,122,88,.35);background:rgba(240,122,88,.08)}.resource-help{color:var(--muted);font-size:12px}.destination{margin-top:16px;padding:16px 18px;border-radius:16px;border:1px solid var(--line);display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;background:rgba(255,255,255,.025)}.destination .icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-weight:900}.destination.book{border-color:rgba(241,211,157,.28);background:rgba(241,211,157,.05)}.destination.book .icon{background:rgba(241,211,157,.13);color:var(--sand)}.destination.discuss .icon{background:rgba(63,193,189,.13);color:var(--teal)}.destination.investigate .icon{background:rgba(240,122,88,.14);color:var(--coral)}.destination.gemini .icon{background:rgba(139,188,244,.13);color:var(--blue)}.destination b{display:block;margin-bottom:4px}.destination p{margin:0;color:#d5e2e0;line-height:1.45}.tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}.tool-card{padding:20px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.03)}.tool-card .n{font-size:11px;text-transform:uppercase;letter-spacing:1.5px;font-weight:900;margin-bottom:10px}.tool-card.site .n{color:var(--teal)}.tool-card.book .n{color:var(--sand)}.tool-card.gemini .n{color:var(--blue)}.tool-card p{margin:0;color:#d6e3e1;line-height:1.5}.tool-card strong{display:block;font-size:20px;margin-bottom:8px}.roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:20px}.roadmap button{padding:16px;text-align:left;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03);color:white;cursor:pointer}.roadmap button:hover{border-color:var(--teal);background:rgba(63,193,189,.08)}.roadmap b{display:block;color:var(--teal);margin-bottom:5px}.route{margin-top:16px;color:var(--muted);font-size:13px}.route b{color:white}.flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:center;margin:18px 0}.flow div{padding:17px;border:1px solid var(--line);border-radius:14px;text-align:center;background:rgba(255,255,255,.03)}.arrow{color:var(--teal);font-size:24px}.footer{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 18px;border-top:1px solid var(--line);background:rgba(4,14,18,.93)}.progress{height:6px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden;max-width:320px}.progress div{height:100%;background:var(--teal);width:0}.nav{display:flex;gap:8px}.nav button{width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:white;font-size:19px}.teacher{justify-self:end}.tip{position:fixed;right:18px;bottom:80px;width:min(430px,calc(100vw - 36px));padding:17px;background:#0b2027;border:1px solid rgba(241,211,157,.3);border-radius:16px;display:none;z-index:10}.tip.show{display:block}.tip h4{color:var(--sand);margin:0 0 8px}.tip p{color:#ccdad8;line-height:1.5;font-size:13px;margin:0}.home-link{color:#b5e8e6;text-decoration:none;font-size:12px}.home-link:hover{color:white}
+@media(max-width:900px){.grid2,.grid3,.grid4,.tool-grid,.roadmap{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg);text-align:center}.teacher{display:none}.screen{padding:18px}.app{grid-template-rows:60px 1fr 60px}.destination{grid-template-columns:1fr}.destination .icon{display:none}.status{font-size:10px;padding:7px 9px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div class="brand"><b>Dune & Pearl Experiences</b><span>BTEC Unit 1 · Junior IT Consultant</span></div><div><a class="home-link" href="index.html">Consultant Hub</a> &nbsp; <span class="status"><span class="dot"></span>TOPIC 04 · SYSTEM UPDATE</span></div></header>
+<main>
+
+<section class="screen active" id="launch" data-tip="Make the three-resource routine explicit. For BTEC, the workbook already performs the evidence-record role, so we do not add a second Case File that duplicates it.">
+<div class="shell"><div class="eyebrow">Unit 1 · Topic 04 · A4</div><h1>OPERATING SYSTEMS<br>& INTERFACES</h1><p class="lede">The camp wants smoother check-in, consistent laptop settings and a reliable sensor controller. IT also wants to update the booking laptops, but an older receipt printer may not survive the change.</p>
+<div class="callout warn"><strong>Your consultant job:</strong> diagnose before replacing, match interfaces to users, and prove that an upgrade can work before wider rollout.</div>
+<div class="tool-grid">
+<div class="tool-card site"><div class="n">Website · Investigate</div><strong>Work the case</strong><p>Discuss evidence, make decisions, test assumptions and respond to new information.</p></div>
+<div class="tool-card book"><div class="n">Workbook · Evidence</div><strong>Keep the professional record</strong><p>Use Topic 04 task codes for your applied work, test plan, extended response, transfer and improvement.</p></div>
+<div class="tool-card gemini"><div class="n">Gemini Notebook · Revise</div><strong>Build secure knowledge</strong><p>Use the Topic 04 Knowledge Bank as the trusted source for revision, retrieval and self-quizzing.</p></div>
+</div>
+<div class="roadmap">
+<button onclick="goLesson('l16')"><b>L16 · UNDERSTAND</b>OS services, OS characteristics and interfaces</button>
+<button onclick="goLesson('l17')"><b>L17 · APPLY</b>Match the technology to Dune & Pearl users</button>
+<button onclick="goLesson('l18')"><b>L18 · RESPOND</b>Plan the upgrade and justify the design</button>
+<button onclick="goLesson('l19')"><b>L19 · IMPROVE</b>Transfer, feedback and stronger reasoning</button>
+</div>
+<div class="route"><b>Classroom only needs one Topic 04 Learning Experience link.</b> Start each lesson from this screen.</div></div></section>
+
+<section class="screen" data-lesson="l16" data-tip="Retrieval belongs in the formal workbook. Keep it brief and diagnostic.">
+<div class="shell"><div class="resource-strip"><span class="mode book">Workbook</span><span class="resource-help">L16-S · retrieval before new teaching</span></div><div class="lesson-chip">L16 · Understand</div><h2>What is the operating system actually doing?</h2>
+<div class="grid2"><div class="panel"><h3>Recall first</h3><p><strong>1.</strong> What does a server provide?</p><p><strong>2.</strong> Why should the choice of input device involve the user?</p><div class="callout">Then predict: if a receipt printer stops working after an OS upgrade, what kind of software component might be involved?</div></div>
+<div class="workbook"><b>WORKBOOK · L16-S</b><p>Complete the starter without notes, then keep it visible for the lesson.</p></div></div>
+<div class="destination book"><div class="icon">W</div><div><b>Where does this go?</b><p>Unit 1 Workbook → Topic 04 → L16 → START.</p></div></div></div></section>
+
+<section class="screen" data-lesson="l16" data-tip="Teacher-led knowledge drop. Students should explain each service using a concrete task rather than copy the screen.">
+<div class="shell"><div class="resource-strip"><span class="mode discuss">Learn & Discuss</span><span class="resource-help">Explain aloud before writing</span></div><div class="lesson-chip">L16 · OS services</div><h2>Five jobs. One operating system.</h2>
+<div class="grid3">
+<div class="panel"><h3>Memory management</h3><p>Allocates and manages RAM.</p></div>
+<div class="panel"><h3>Multitasking</h3><p>Schedules work between processes.</p></div>
+<div class="panel"><h3>Device drivers</h3><p>Allow the OS to communicate with hardware.</p></div>
+<div class="panel"><h3>Networking services</h3><p>Support communication.</p></div>
+<div class="panel"><h3>Security services</h3><p>Manage accounts, permissions and protections.</p></div>
+<div class="panel warn"><h3>Consultant warning</h3><p>A slow booking screen is not proof that the OS is the problem.</p></div>
+</div>
+<div class="callout" style="margin-top:16px"><strong>Challenge:</strong> choose one service and explain how it could matter during a busy camp check-in.</div>
+<div class="destination discuss"><div class="icon">D</div><div><b>Do not copy the cards.</b><p>Use them to explain the service in your own words and connect it to a real task.</p></div></div></div></section>
+
+<section class="screen" data-lesson="l16" data-tip="The distinction between real-time and embedded is a likely misconception. Force students to separate the properties.">
+<div class="shell"><div class="resource-strip"><span class="mode discuss">Discuss</span><span class="mode book">Workbook</span><span class="resource-help">T04-KC follows the classification</span></div><div class="lesson-chip">L16 · OS characteristics</div><h2>Embedded? Real-time? Multi-user?</h2>
+<div class="grid2"><div class="panel"><div class="evidence"><strong>Environmental sensor controller</strong><br>Must respond within the designed control time.</div><div class="evidence"><strong>Booking laptops</strong><br>Used by staff with accounts and approved settings.</div><div class="evidence"><strong>Check-in kiosk</strong><br>Dedicated to a restricted guest-facing task.</div></div>
+<div><button class="choice" onclick="pick(this)">Embedded describes a dedicated device or system.</button><button class="choice" onclick="pick(this)">Real-time describes a defined timing requirement.</button><button class="choice" onclick="pick(this)">Multi-user describes support for multiple users with sessions or permissions.</button>
+<div class="actions"><button class="btn" onclick="reveal('r16')">REVEAL KEY DISTINCTION</button></div><div class="reveal" id="r16"><b>A system can belong to more than one category.</b> A dedicated controller may be embedded and also real-time if it must respond within defined timing constraints.</div></div></div>
+<div class="workbook" style="margin-top:16px"><b>T04-KC · EXIT CHECK</b><p>Distinguish “embedded” from “real-time”. Give a situation where a device might be both.</p></div>
+<div class="destination book"><div class="icon">W</div><div><b>Record the formal answer.</b><p>Workbook → L16 → T04-KC.</p></div></div></div></section>
+
+<section class="screen" data-lesson="l17" data-tip="This begins the applied lesson. Students should use the evidence, not generic interface preferences.">
+<div class="shell"><div class="resource-strip"><span class="mode investigate">Investigate</span><span class="resource-help">Use the supplied Dune & Pearl client evidence</span></div><div class="lesson-chip">L17 · Apply</div><h2>The camp system is becoming a people problem.</h2>
+<div class="grid2"><div class="panel"><span class="tag">Client evidence</span><p>The camp has check-in kiosks, booking laptops and a controller for an environmental sensor.</p><p>Temporary staff find the booking interface crowded.</p><p>IT wants to update the laptops, but an older receipt printer may not have a compatible driver.</p></div>
+<div class="panel"><h3>Three different needs</h3><div class="evidence"><strong>Temporary reception staff</strong><br>Find and confirm a booking after short training.</div><div class="evidence"><strong>IT administrator</strong><br>Apply approved settings consistently to 20 laptops.</div><div class="evidence"><strong>Sensor controller</strong><br>Respond within the designed control time.</div></div></div>
+<div class="callout warn" style="margin-top:16px"><strong>Manager shortcut:</strong> “Can we just give everyone the same interface and update everything tonight?” What is wrong with that reasoning?</div>
+<div class="destination investigate"><div class="icon">?</div><div><b>Consult first.</b><p>Different users and systems have different tasks. Your recommendation needs evidence of fit, not a one-size-fits-all answer.</p></div></div></div></section>
+
+<section class="screen" data-lesson="l17" data-tip="Map directly to T04-A1. Let students debate credible options before they write.">
+<div class="shell"><div class="resource-strip"><span class="mode discuss">Discuss</span><span class="mode book">Workbook T04-A1</span><span class="resource-help">Choose, justify, then record</span></div><div class="lesson-chip">L17 · Decision challenge</div><h2>Match the interface to the work.</h2>
+<div class="grid4">
+<div class="panel"><h3>GUI</h3><p>Visual controls and familiar workflows.</p><span class="small">Risk: clutter and resource use</span></div>
+<div class="panel"><h3>CLI</h3><p>Precise administration, scripting and automation.</p><span class="small">Risk: knowledge required; mistakes can spread</span></div>
+<div class="panel"><h3>Menu-based</h3><p>Restricted, repeated choices such as kiosks.</p><span class="small">Risk: limited flexibility</span></div>
+<div class="panel"><h3>Adapted</h3><p>Screen reader, magnification, voice or switch access.</p><span class="small">Must be tested with the user</span></div>
+</div>
+<div class="callout" style="margin-top:16px"><strong>Task:</strong> match each Dune & Pearl user or system to an appropriate interface or OS characteristic. Explain why it fits. More than one answer may be defensible if the reasoning is strong.</div>
+<div class="destination book"><div class="icon">A1</div><div><b>WORKBOOK · T04-A1</b><p>Record your matches and explain the task fit for each.</p></div></div></div></section>
+
+<section class="screen" data-lesson="l17" data-tip="T04-A2 is a design task. Do not turn the website into the final artefact. Students should sketch and annotate in their workbook or link a practical file.">
+<div class="shell"><div class="resource-strip"><span class="mode investigate">Design</span><span class="mode book">Workbook T04-A2</span><span class="resource-help">Create the interface evidence</span></div><div class="lesson-chip">L17 · Interface design</div><h2>Fix the crowded check-in screen.</h2>
+<div class="grid2"><div class="panel"><h3>Required on the screen</h3><div class="evidence">Booking search</div><div class="evidence">Identity confirmation</div><div class="evidence">Status</div><div class="evidence">Help route</div></div>
+<div class="panel"><h3>Annotate your design</h3><p>Where have you reduced error?</p><p>How does the user recover if the normal route fails?</p><p>What accessibility support or alternative may be needed?</p><p>What should temporary staff be able to learn quickly?</p></div></div>
+<div class="callout warn" style="margin-top:16px"><strong>Remember:</strong> restricting choices does not automatically make a kiosk inclusive.</div>
+<div class="destination book"><div class="icon">A2</div><div><b>WORKBOOK · T04-A2</b><p>Sketch the screen and annotate error prevention and accessibility. Link a practical file if you build it digitally.</p></div></div></div></section>
+
+<section class="screen" data-lesson="l18" data-tip="This is the curveball that forces compatibility thinking before rollout. Ask students what evidence they need, not whether they personally like updates.">
+<div class="shell"><div class="resource-strip"><span class="mode investigate">New evidence</span><span class="resource-help">Do not approve the rollout yet</span></div><div class="lesson-chip">L18 · Respond</div><h2>The upgrade installs. The printer does not.</h2>
+<div class="grid2"><div class="panel warn"><h3>Compatibility risk</h3><p>IT wants to update the booking laptops.</p><p>The camp’s older receipt printer may not have a compatible driver.</p></div>
+<div><button class="choice" onclick="pick(this)">Cancel every upgrade permanently.</button><button class="choice" onclick="pick(this)">Roll out to all 20 laptops and fix problems later.</button><button class="choice" onclick="pick(this)">Pilot the upgrade and test the printer, booking application, security settings and rollback.</button>
+<div class="actions"><button class="btn" onclick="reveal('r18')">REVEAL CONSULTANT VIEW</button></div><div class="reveal" id="r18"><b>The evidence supports a controlled trial.</b> Driver risk is a reason to test before wider deployment, not proof that the whole upgrade must be abandoned.</div></div></div>
+<div class="destination investigate"><div class="icon">!</div><div><b>Diagnose and test.</b><p>An installation that completes successfully does not prove that the whole working system still works.</p></div></div></div></section>
+
+<section class="screen" data-lesson="l18" data-tip="Map directly to T04-A3. Encourage explicit pass/fail evidence and a rollback trigger.">
+<div class="shell"><div class="resource-strip"><span class="mode book">Workbook T04-A3</span><span class="resource-help">Professional test plan</span></div><div class="lesson-chip">L18 · Upgrade plan</div><h2>Prove the change before you trust it.</h2>
+<div class="grid2"><div class="panel"><h3>Your test plan must cover</h3><div class="evidence">Receipt printer</div><div class="evidence">Booking application</div><div class="evidence">Security settings</div><div class="evidence">Rollback if the trial fails</div></div>
+<div class="panel"><h3>For each test, define</h3><p>What is tested?</p><p>What result is expected?</p><p>What evidence is recorded?</p><p>What counts as pass or fail?</p><p>What happens if it fails?</p></div></div>
+<div class="callout" style="margin-top:16px"><strong>Consultant standard:</strong> “It opened” is not a complete test result. Test the actual workflow and the failure route.</div>
+<div class="destination book"><div class="icon">A3</div><div><b>WORKBOOK · T04-A3</b><p>Write the upgrade test plan. Make the rollback route explicit.</p></div></div></div></section>
+
+<section class="screen" data-lesson="l18" data-tip="The extended response is the formal synthesis. Keep the site as a planning scaffold, not a model answer generator.">
+<div class="shell"><div class="resource-strip"><span class="mode book">Workbook T04-ER</span><span class="resource-help">Independent extended response</span></div><div class="lesson-chip">L18 · Explain, analyse, justify</div><h2>Now make the recommendation defensible.</h2>
+<div class="workbook"><b>T04-ER · INDEPENDENT EXTENDED RESPONSE</b><p>Explain the OS services needed at the camp, then analyse how two interface choices would affect users, training and performance. Justify your preferred check-in design.</p></div>
+<div class="grid3" style="margin-top:16px">
+<div class="panel"><h3>CLAIM</h3><p>What are you recommending?</p></div>
+<div class="panel"><h3>EVIDENCE → CONSEQUENCE</h3><p>Which Dune & Pearl fact supports it, and what follows for users or the organisation?</p></div>
+<div class="panel"><h3>LIMITATION → DECISION</h3><p>What could still go wrong, and why is your conclusion still reasonable?</p></div>
+</div>
+<div class="destination book"><div class="icon">ER</div><div><b>Keep the draft.</b><p>Workbook → L18 → T04-ER. You will improve this response in L19 rather than overwrite the original.</p></div></div></div></section>
+
+<section class="screen" data-lesson="l19" data-tip="Transfer matters. Students need to show the idea survives outside the Dune & Pearl story.">
+<div class="shell"><div class="resource-strip"><span class="mode book">Workbook T04-TR</span><span class="resource-help">Transfer to an unfamiliar context</span></div><div class="lesson-chip">L19 · Improve</div><h2>Same hardware. Different people. Different interface.</h2>
+<div class="grid2"><div class="panel"><h3>Software developer</h3><p>May need precise administration, commands, scripting or automation.</p></div><div class="panel"><h3>Young pupil</h3><p>May need visible controls, familiar navigation and a lower command-learning burden.</p></div></div>
+<div class="callout" style="margin-top:16px"><strong>Transfer question:</strong> A software developer and a young pupil use the same computer hardware. Why might a CLI suit one task while a graphical interface suits the other?</div>
+<div class="destination book"><div class="icon">TR</div><div><b>WORKBOOK · T04-TR</b><p>Explain the difference through user and task needs, not age stereotypes or “CLI is better”.</p></div></div></div></section>
+
+<section class="screen" data-lesson="l19" data-tip="Protect the original draft. The point is visible improvement, not replacing history.">
+<div class="shell"><div class="resource-strip"><span class="mode discuss">Review</span><span class="mode book">Workbook T04-REVIEW</span><span class="resource-help">Use feedback to improve reasoning</span></div><div class="lesson-chip">L19 · Review and improve</div><h2>Make one part visibly stronger.</h2>
+<div class="grid3"><div class="panel"><h3>1 · Diagnose</h3><p>What is weak: technical accuracy, case evidence, stakeholder effect or limitation?</p></div><div class="panel"><h3>2 · Rewrite</h3><p>Improve one paragraph or section while keeping the original draft in L18.</p></div><div class="panel"><h3>3 · Explain</h3><p>State what changed, why it is stronger and what your next step is.</p></div></div>
+<div class="callout" style="margin-top:16px"><strong>Quality check:</strong> can another reader see exactly how feedback changed your reasoning?</div>
+<div class="destination book"><div class="icon">R</div><div><b>WORKBOOK · T04-REVIEW</b><p>Record the weakness, improved section and explanation of the improvement.</p></div></div></div></section>
+
+<section class="screen" data-lesson="l19" data-tip="Use this as a quick formative handover. It is teaching and practice, not the live Pearson Set Assignment.">
+<div class="shell"><div class="resource-strip"><span class="mode discuss">Topic check</span><span class="mode gemini">Gemini revision</span><span class="resource-help">No new assessed evidence required</span></div><div class="lesson-chip">Topic 04 · Handover</div><h2>Can you advise the client without the slides?</h2>
+<div class="grid4">
+<div class="panel"><h3>01</h3><p>Name three OS services and explain one in context.</p></div>
+<div class="panel"><h3>02</h3><p>Distinguish embedded from real-time.</p></div>
+<div class="panel"><h3>03</h3><p>Choose an interface for a kiosk and give one limitation.</p></div>
+<div class="panel"><h3>04</h3><p>Give two things you would test before an OS rollout.</p></div>
+</div>
+<div class="gemini" style="margin-top:16px"><b>GEMINI NOTEBOOK · REVISION ROUTE</b><p>Use the Topic 04 Knowledge Bank as the source. Ask for retrieval, new scenarios, misconception checks and feedback on your reasoning. Do not use it to replace your own workbook evidence.</p></div>
+<div class="actions"><button class="btn coral" onclick="go(0)">RETURN TO TOPIC HOME</button><a class="btn ghost" style="text-decoration:none" href="index.html">CONSULTANT HUB</a></div>
+<div class="destination discuss"><div class="icon">✓</div><div><b>Topic 04 complete.</b><p>Website: investigation. Workbook: professional evidence. Gemini Notebook: revision and retrieval.</p></div></div></div></section>
+
+</main>
+<footer class="footer"><div><div class="progress"><div id="bar"></div></div><span class="small" id="stage">Stage 1</span></div><div class="nav"><button aria-label="Previous screen" onclick="go(current-1)">‹</button><button aria-label="Next screen" onclick="go(current+1)">›</button></div><div class="teacher"><button class="btn ghost" onclick="toggleTip()">Teacher cue</button></div></footer>
+</div>
+<div class="tip" id="tip"><h4>Teacher cue</h4><p id="tipText"></p></div>
+<script>
+let current=0;const screens=[...document.querySelectorAll('.screen')];
+const lessonStarts={l16:1,l17:4,l18:7,l19:10};
+function go(n){if(n<0||n>=screens.length)return;screens[current].classList.remove('active');current=n;screens[current].classList.add('active');document.getElementById('bar').style.width=(current/(screens.length-1)*100)+'%';document.getElementById('stage').textContent='Stage '+(current+1)+'/'+screens.length;document.getElementById('tip').classList.remove('show');window.scrollTo(0,0)}
+function goLesson(id){go(lessonStarts[id]??0)}
+function reveal(id){document.getElementById(id)?.classList.toggle('show')}
+function pick(b){b.parentElement.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));b.classList.add('selected')}
+function toggleTip(){document.getElementById('tipText').textContent=screens[current].dataset.tip||'';document.getElementById('tip').classList.toggle('show')}
+document.addEventListener('keydown',e=>{if(['INPUT','TEXTAREA'].includes(document.activeElement.tagName))return;if(e.key==='ArrowRight')go(current+1);if(e.key==='ArrowLeft')go(current-1);if(e.key.toLowerCase()==='c')toggleTip();if(e.key.toLowerCase()==='r'){const x=screens[current].querySelector('.reveal');if(x)x.classList.toggle('show')}});
+const q=new URLSearchParams(location.search).get('lesson'); if(q&&lessonStarts['l'+q]) current=lessonStarts['l'+q]; go(current);
+</script>
+</body>
+</html>
