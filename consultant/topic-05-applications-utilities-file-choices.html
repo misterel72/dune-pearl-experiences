@@ -65,7 +65,7 @@
 </div><div class="tip" id="tip"><h4>Teacher cue</h4><p id="tipText"></p></div>
 <script>
 let current=0;const screens=[...document.querySelectorAll('.screen')];
-const lessonStarts={l20:1,l21:5,l22:8,l23:11};
+const lessonStarts={l20:1,l21:5,l22:8,l23:10};
 function go(n){if(n<0||n>=screens.length)return;screens[current].classList.remove('active');current=n;screens[current].classList.add('active');document.getElementById('bar').style.width=(current/(screens.length-1)*100)+'%';document.getElementById('stage').textContent='Stage '+(current+1)+'/'+screens.length;document.getElementById('tip').classList.remove('show');window.scrollTo(0,0)}
 function goLesson(id){go(lessonStarts[id]??0)}
 function toggleTip(){document.getElementById('tipText').textContent=screens[current].dataset.tip||'';document.getElementById('tip').classList.toggle('show')}
