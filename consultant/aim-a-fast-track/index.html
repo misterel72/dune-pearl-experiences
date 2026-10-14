@@ -107,8 +107,7 @@ function printEvidence(all){
     return;
   }
   w.document.open();w.document.write(documentHTML);w.document.close();w.focus();
-  w.addEventListener('load',()=>setTimeout(()=>w.print(),200),{once:true});
-  setTimeout(()=>{try{if(!w.closed)w.print()}catch(e){}},750);
+  setTimeout(()=>{try{if(!w.closed)w.print()}catch(e){}},450);
 }
 $('studentName').oninput=e=>{saved.name=e.target.value;persist()};
 $('hints').onchange=e=>{saved.hints=e.target.checked;persist();show(current)};
