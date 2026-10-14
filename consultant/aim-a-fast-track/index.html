@@ -35,9 +35,92 @@ function nav(){ $('nav').innerHTML=L.map((x,i)=>'<button class="navbtn '+(i===cu
 function hints(){return $('hints').checked?'<div class="box"><b>Writing supports</b>Explain: This helps [user] because ... Analyse: This could lead to ... however ... Evaluate: Compared with [alternative], I recommend ... because ... I would check ...</div>':''}
 function show(i){current=i;location.hash='lesson-'+(i+1);const x=L[i];$('lesson').innerHTML='<section class="lesson"><p class="eyebrow">Fast Track · Lesson '+(i+1)+' of 9 · '+x.a+'</p><h2>'+escapeHtml(x.t)+'</h2><p class="subtitle">'+escapeHtml(x.goal)+'</p><div class="routine"><div>5 min<small>Retrieval</small></div><div>12 min<small>Teach</small></div><div>25 min<small>Apply</small></div><div>8 min<small>Check</small></div></div><p><span class="tag">Pearson coverage: '+x.a+'</span><span class="tag">Original workbook: '+x.wb+'</span></p><div class="mini"><b>START · Retrieve before reading</b>Explain one relevant idea from the previous lesson without checking notes. Then compare your explanation with today’s first concept.</div><h3>TEACH · What matters</h3>'+x.concepts.map(v=>'<div class="mini"><b>'+escapeHtml(v[0])+'</b>'+escapeHtml(v[1])+'</div>').join('')+'<div class="box"><b>CLIENT EVIDENCE · Dune & Pearl / practice client</b>'+escapeHtml(x.case)+'</div>'+ (i===2?'<div class="network" role="img" aria-label="Illustrative route from client devices through local networks to managed online services"><span>Office PCs</span>→<span>Switch / router</span>→<span>Cloud service</span><span>Access point → site tablets</span><span>4G / 5G → mobile guides</span></div><p class="muted">Example only. Your plan should label permissions, networks and the contingency for outages.</p>':'')+ '<h3>APPLY · Your consultancy record</h3>'+hints()+x.prompt.map((p,j)=>'<div class="task"><label for="a'+j+'">'+(j+1)+'. '+escapeHtml(p[0])+'</label><p>'+escapeHtml(p[1])+'</p><textarea id="a'+j+'" data-k="'+taskKey(i,j)+'" placeholder="'+escapeHtml(p[2])+'">'+escapeHtml(saved.answers[taskKey(i,j)]||'')+'</textarea></div>').join('')+'<h3>CHECK · Quick retrieval</h3><div class="quiz"><b>'+escapeHtml(x.q)+'</b><div class="choices">'+x.o.map((v,j)=>'<label><input type="radio" name="q'+i+'" value="'+j+'" '+(saved.quiz['q'+i]===j?'checked':'')+'> '+escapeHtml(v)+'</label>').join('')+'</div><div id="fb" class="feedback" aria-live="polite"></div></div><p class="muted">All three written tasks are formative. A completed box is not automatically a high-quality response. Use the writing guide to check reasoning.</p></section>';document.querySelectorAll('textarea[data-k]').forEach(t=>t.oninput=()=>{saved.answers[t.dataset.k]=t.value;persist();nav()});document.querySelectorAll('input[name="q'+i+'"]').forEach(t=>t.onchange=()=>{saved.quiz['q'+i]=Number(t.value);persist();quizFeedback()});quizFeedback();$('prev').disabled=i===0;$('next').textContent=i===8?'Go to holiday programme →':'Next lesson →';$('studentName').value=saved.name||'';nav();document.querySelector('main').scrollIntoView({behavior:'smooth',block:'start'});}
 function quizFeedback(){const v=saved.quiz['q'+current],fb=$('fb');if(v===undefined){fb.textContent='Select an answer to check your understanding.';fb.className='feedback muted'}else{fb.textContent=(v===L[current].c?'Correct. ':'Not quite. ')+L[current].e;fb.className='feedback '+(v===L[current].c?'good':'bad')}}
-function renderExport(all){return 'NIS Lagoon | Unit 1 Aim A Fast Track\nStudent: '+(saved.name||'Not entered')+'\nFormative practice only. Not Pearson live assessment.\n\n'+L.map((x,i)=>(all||i===current)?'FAST TRACK LESSON '+(i+1)+' | '+x.t+' | '+x.a+'\n'+x.prompt.map((p,j)=>p[0]+'\n'+(saved.answers[taskKey(i,j)]||'[No response recorded]')).join('\n\n')+'\n\n':'').join('')}
-$('studentName').oninput=e=>{saved.name=e.target.value;persist()};$('hints').onchange=e=>{saved.hints=e.target.checked;persist();show(current)};$('prev').onclick=()=>show(Math.max(0,current-1));$('next').onclick=()=>current===8?location.href='holiday.html':show(current+1);
-$('exportTxt').onclick=()=>{const blob=new Blob([renderExport(true)],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='NIS-Aim-A-'+(saved.name||'student').replace(/[^a-z0-9-]/ig,'-')+'.txt';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000)};
-$('printOne').onclick=()=>{const w=window.open('','_blank');if(!w){window.print();return}w.document.write('<!doctype html><html><head><title>Aim A lesson evidence</title><style>body{font:15px/1.6 Arial,sans-serif;max-width:820px;margin:25px auto;color:#16313a;white-space:pre-wrap}</style></head><body>'+escapeHtml(renderExport(false))+'</body></html>');w.document.close();w.focus();setTimeout(()=>w.print(),300)};$('printAll').onclick=()=>{const src=$('lesson').innerHTML;const original=current;let out='';for(let i=0;i<L.length;i++){const x=L[i];out+='<section class="lesson"><h2>FT'+(i+1)+' '+escapeHtml(x.t)+'</h2>'+x.prompt.map((p,j)=>'<div class="task"><b>'+escapeHtml(p[0])+'</b><p style="white-space:pre-wrap">'+escapeHtml(saved.answers[taskKey(i,j)]||'[No response recorded]')+'</p></div>').join('')+'</section>'};const w=window.open('','_blank');if(!w){alert('Allow pop-ups to print all nine lessons, or use the lesson print button.');return}w.document.write('<!doctype html><html><head><title>Aim A Fast Track evidence</title><style>body{font:15px/1.6 Arial,sans-serif;max-width:820px;margin:24px auto;color:#16313a}.lesson{break-before:page}h2{border-bottom:2px solid #16313a}p{white-space:pre-wrap} .task{margin:16px 0}</style></head><body><h1>Aim A Fast Track · Formative Evidence</h1><p>Student: '+escapeHtml(saved.name||'Not entered')+'</p>'+out+'<p>Learning practice only. Not a live Pearson assignment.</p></body></html>');w.document.close();w.focus();setTimeout(()=>w.print(),350)};
+
+function quizResult(i){
+  const x=L[i], selected=saved.quiz['q'+i];
+  const answered=Number.isInteger(selected)&&selected>=0&&selected<x.o.length;
+  return {
+    answered:answered,
+    choice:answered?x.o[selected]:'Not answered',
+    result:answered?(selected===x.c?'Correct':'Incorrect'):'Not answered',
+    feedback:answered?x.e:'',
+    correctAnswer:answered?x.o[x.c]:''
+  };
+}
+function lessonEvidenceText(i){
+  const x=L[i],q=quizResult(i);
+  const written=x.prompt.map((p,j)=>(j+1)+'. '+p[0]+'\n'+(saved.answers[taskKey(i,j)]||'[No response recorded]')).join('\n\n');
+  return 'FAST TRACK LESSON '+(i+1)+' | '+x.t+' | '+x.a+'\n'+written+
+    '\n\nMCQ · '+x.q+
+    '\nStudent selected: '+q.choice+
+    '\nResult: '+q.result+
+    (q.answered?'\nCorrect answer: '+q.correctAnswer+'\nExplanation: '+q.feedback:'')+'\n\n';
+}
+function renderExport(all){
+  return 'NIS Lagoon | Unit 1 Aim A Fast Track\nStudent: '+(saved.name||'Not entered')+
+    '\nFormative practice only. Not Pearson live assessment.\n\n'+
+    L.map((x,i)=>(all||i===current)?lessonEvidenceText(i):'').join('');
+}
+function lessonEvidenceHTML(i){
+  const x=L[i],q=quizResult(i);
+  return '<section class="lesson">'+
+    '<h2>FT'+String(i+1).padStart(2,'0')+' · '+escapeHtml(x.t)+'</h2>'+
+    '<p class="area">Learning Aim A: '+escapeHtml(x.a)+'</p>'+
+    x.prompt.map((p,j)=>'<div class="task"><h3>'+(j+1)+'. '+escapeHtml(p[0])+'</h3>'+
+      '<p class="answer">'+escapeHtml(saved.answers[taskKey(i,j)]||'[No response recorded]')+'</p></div>').join('')+
+    '<div class="mcq"><h3>Retrieval MCQ</h3>'+
+    '<p><strong>Question:</strong> '+escapeHtml(x.q)+'</p>'+
+    '<p><strong>Student selected:</strong> '+escapeHtml(q.choice)+'</p>'+
+    '<p><strong>Result:</strong> '+escapeHtml(q.result)+'</p>'+
+    (q.answered?'<p><strong>Correct answer:</strong> '+escapeHtml(q.correctAnswer)+'</p>'+
+     '<p><strong>Explanation:</strong> '+escapeHtml(q.feedback)+'</p>':'')+
+    '</div></section>';
+}
+function printEvidence(all){
+  const indices=all?L.map((x,i)=>i):[current];
+  const answered=indices.filter(i=>quizResult(i).answered).length;
+  const correct=indices.filter(i=>quizResult(i).result==='Correct').length;
+  const body=indices.map(i=>lessonEvidenceHTML(i)).join('');
+  const documentHTML='<!doctype html><html lang="en"><head><meta charset="utf-8">'+
+    '<title>Aim A Fast Track · Student evidence</title>'+
+    '<style>'+
+    '@page{size:A4;margin:15mm 14mm}'+
+    'body{font:12pt/1.52 Arial,sans-serif;color:#16313a;margin:0}'+
+    'h1{font-size:20pt;margin:0 0 10px}h2{font-size:15pt;border-bottom:2px solid #16313a;padding-bottom:5px}'+
+    'h3{font-size:11pt;margin:0 0 7px}.area,.meta{color:#536a70}'+
+    '.lesson{break-before:page;page-break-before:always}.lesson:first-of-type{break-before:auto;page-break-before:auto}'+
+    '.task{margin:18px 0}.answer{white-space:pre-wrap;margin:4px 0 16px;overflow-wrap:anywhere}'+
+    '.mcq{margin:22px 0 12px;padding:12px 15px;background:#edf5f3;border-left:4px solid #0c6973;break-inside:avoid;page-break-inside:avoid}'+
+    '.mcq p{margin:5px 0;overflow-wrap:anywhere}.foot{font-size:9pt;color:#647579;margin-top:24px}'+
+    '@media print{.mcq{print-color-adjust:exact;-webkit-print-color-adjust:exact}}'+
+    '</style></head><body>'+
+    '<h1>BTEC Unit 1 · Aim A Fast Track</h1>'+
+    '<p class="meta"><strong>Student:</strong> '+escapeHtml(saved.name||'Not entered')+
+    ' &nbsp; | &nbsp; <strong>Lessons:</strong> '+(all?'FT01–FT09':'FT'+String(current+1).padStart(2,'0'))+
+    ' &nbsp; | &nbsp; <strong>MCQ score:</strong> '+correct+'/'+answered+' correct ('+answered+' attempted)</p>'+
+    body+
+    '<p class="foot">NIS Lagoon · Formative teaching and learning evidence only. Not a live Pearson assignment.</p>'+
+    '</body></html>';
+  const w=window.open('','_blank');
+  if(!w){
+    alert('Your browser blocked the PDF window. Allow pop-ups for this site and try again.');
+    return;
+  }
+  w.document.open();w.document.write(documentHTML);w.document.close();w.focus();
+  w.addEventListener('load',()=>setTimeout(()=>w.print(),200),{once:true});
+  setTimeout(()=>{try{if(!w.closed)w.print()}catch(e){}},750);
+}
+$('studentName').oninput=e=>{saved.name=e.target.value;persist()};
+$('hints').onchange=e=>{saved.hints=e.target.checked;persist();show(current)};
+$('prev').onclick=()=>show(Math.max(0,current-1));
+$('next').onclick=()=>current===8?location.href='holiday.html':show(current+1);
+$('exportTxt').onclick=()=>{
+  const blob=new Blob([renderExport(true)],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='NIS-Aim-A-'+(saved.name||'student').replace(/[^a-z0-9-]/ig,'-')+'.txt';
+  a.click();setTimeout(()=>URL.revokeObjectURL(a.href),3000);
+};
+$('printOne').onclick=()=>printEvidence(false);
+$('printAll').onclick=()=>printEvidence(true);
 $('hints').checked=Boolean(saved.hints);const n=Number((location.hash.match(/lesson-(\d+)/)||[])[1]);show(n>=1&&n<=9?n-1:0);
 </script></body></html>
